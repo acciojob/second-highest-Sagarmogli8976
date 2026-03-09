@@ -1,28 +1,19 @@
 function secondHighest(arr) {
-  if (arr.length < 2) return -Infinity;
-
-  let max = -Infinity;
-  let secondMax = -Infinity;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > max) {
-      secondMax = max;
-      max = arr[i];
-    } 
-    else if (arr[i] > secondMax && arr[i] !== max) {
-      secondMax = arr[i];
+    if (arr.length === 0 || arr.length === 1) {
+        return -Infinity;
     }
-  }
 
-  return secondMax;
+    let first = -Infinity;
+    let second = -Infinity;
+
+    for (let num of arr) {
+        if (num > first) {
+            second = first;
+            first = num;
+        } else if (num > second && num !== first) {
+            second = num;
+        }
+    }
+
+    return second === -Infinity ? -Infinity : second;
 }
-
-let n = Number(prompt());   // size of array
-let arr = [];
-
-for (let i = 0; i < n; i++) {
-  arr.push(Number(prompt()));
-}
-
-let result = secondHighest(arr);
-alert(result);
