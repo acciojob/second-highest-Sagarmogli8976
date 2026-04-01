@@ -1,26 +1,32 @@
 function secondHighest(arr) {
-  if (!arr || arr.length < 2) return -Infinity;
+	if (!arr || arr.length < 2) return -Infinity;
 
-  let first = -Infinity;
-  let second = -Infinity;
+	arr = arr.map(Number);
 
-  for (let num of arr) {
-    if (num > first) {
-      second = first;
-      first = num;
-    } else if (num > second && num < first) {
-      second = num;
-    }
-  }
+	let max = -Infinity;
+	let second = -Infinity;
 
-  return second;
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] > max) {
+			second = max;
+			max = arr[i];
+		} else if (arr[i] > second && arr[i] !== max) {
+			second = arr[i];
+		}
+	}
+
+	return second === -Infinity ? -Infinity : second;
 }
 
-let n = Number(prompt());
-let arr = [];
+function Main() {
+	var n = prompt("Enter the number of elements");
+	var arr = [];
 
-for (let i = 0; i < n; i++) {
-  arr.push(Number(prompt()));
+	for (var i = 0; i < n; i++) {
+		arr[i] = prompt("Enter element " + (i + 1));
+	}
+
+	alert(secondHighest(arr));
 }
 
-alert(secondHighest(arr));
+Main();
