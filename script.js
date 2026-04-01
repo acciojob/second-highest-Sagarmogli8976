@@ -1,19 +1,17 @@
 function secondHighest(arr) {
-    if (arr.length === 0 || arr.length === 1) {
-        return -Infinity;
+  if (!arr || arr.length < 2) return -Infinity;
+
+  let first = -Infinity;
+  let second = -Infinity;
+
+  for (let num of arr) {
+    if (num > first) {
+      second = first;
+      first = num;
+    } else if (num > second && num < first) {
+      second = num;
     }
+  }
 
-    let first = -Infinity;
-    let second = -Infinity;
-
-    for (let num of arr) {
-        if (num > first) {
-            second = first;
-            first = num;
-        } else if (num > second && num !== first) {
-            second = num;
-        }
-    }
-
-    return second === -Infinity ? -Infinity : second;
+  return second === -Infinity ? -Infinity : second;
 }
